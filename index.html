@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <title>Formula-Editor</title>
+</head>
+<body>
+    <textarea id="inputTextarea" cols="50" rows="15" onkeyup="ctrlSpace(event); getArrowKeys(event);" onmouseup="getMouseClick();" oninput="getCursorPosition();"></textarea>    
+    <div id="hiddenTextarea">dene</div>
+    <div id="auto-comp">
+        <div id="autocomplete">
+            <ul id="list">
+            </ul>
+        </div>
+        <div class="tabbed-area">
+            <ul class="tabs group">
+                <li onclick="custObjClicked();"><a id="customObjects" class="passive active" href="#">CO</a></li>
+                <li onclick="fieldsClicked();" ><a id="fields" class="passive" href="#">F</a></li>
+                <li onclick="operatorsClicked();"><a id="operators" class="passive" href="#">O</a></li>
+            </ul>
+        </div>
+    </div>
+    <input type="text" id="hiddenTextBox" onkeyup="escClicked(event);">
+<script type="text/javascript" src="customobjects.js"></script>
+<script type="text/javascript" src="formulas.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
