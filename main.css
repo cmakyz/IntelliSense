@@ -28,7 +28,10 @@ li {
 ul {
     margin: 0 auto;
 }
-#autocomplete ul li:hover{
+#autocomplete ul li{
+    color: black;
+}
+.active , #auto-comp div ul li:hover{
     background-color: rgb(134, 134, 134);
     color: white;
 }
@@ -49,7 +52,7 @@ li:hover {
     margin-left: -40px;
     margin-top: 12px;
 }
-.tabs li { 
+.tabs li {
     display: inline;
 }
 .tabs li a {
@@ -57,44 +60,32 @@ li:hover {
     float: left;
     display: block;
     padding: 4px 10px;
-    margin-left: -1px; 
-    position: relative; 
-    left: 1px; 
-    background: white; 
-    text-decoration: none; 
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+    background: white;
+    text-decoration: none;
 }
 .tabs li a:hover { 
     background: #ccc; 
 }
-.group:after { 
-    visibility: hidden; 
-    display: block; 
+.group:after {
+    visibility: hidden;
+    display: block;
     font-size: 0; 
-    content: " "; 
-    clear: both; 
-    height: 0; 
+    content: " ";
+    clear: both;
+    height: 0;
 }
-.box-wrap { 
-    position: relative; 
-    min-height: 250px; 
+.box-wrap {
+    position: relative;
+    min-height: 250px;
 }
 .tabbed-area{
     padding-top: 140px;
 }
-.tabbed-area div div { 
-    background: white; 
-    padding: 20px; 
-    min-height: 250px; 
-    position: absolute; 
-    top: -1px; 
-    left: 0; 
-    width: 100%; 
-}
-.tabbed-area div div, .tabs li a { 
+.tabs li a { 
     border: 1px solid #ccc; 
-}
-#box-one:target, #box-two:target, #box-three:target {
-  z-index: 1;
 }
 .cur-nav-fix .tabs { 
     position: absolute;
@@ -106,9 +97,6 @@ li:hover {
    background: -moz-linear-gradient(top, white, #eee); 
    background: -ms-linear-gradient(top, white, #eee); 
    background: -o-linear-gradient(top, white, #eee); 
-}
-#box-four { 
-    z-index: 1;
 }
 ::-webkit-scrollbar {
     width: 5px;

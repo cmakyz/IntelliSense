@@ -7,23 +7,25 @@
     <link rel="stylesheet" href="main.css">
     <title>Formula-Editor</title>
 </head>
-<body>
-    <textarea id="inputTextarea" cols="50" rows="15" onkeyup="ctrlSpace(event); getArrowKeys(event);" onmouseup="getMouseClick();" oninput="getCursorPosition();"></textarea>    
-    <div id="hiddenTextarea">dene</div>
+<body onkeyup="escClicked(event);">
+    <textarea id="inputTextarea" cols="50" rows="15" onkeyup="ctrlSpace(event); getArrowKeys(event);" onmouseup="getMouseClick();" oninput="getCursorPosition(); inputControl();"></textarea>    
+    <div id="hiddenTextarea"></div>
+
     <div id="auto-comp">
         <div id="autocomplete">
-            <ul id="list">
+            <ul id="list" onclick="funcListClicked();">
             </ul>
         </div>
         <div class="tabbed-area">
             <ul class="tabs group">
-                <li onclick="custObjClicked();"><a id="customObjects" class="passive active" href="#">CO</a></li>
-                <li onclick="fieldsClicked();" ><a id="fields" class="passive" href="#">F</a></li>
-                <li onclick="operatorsClicked();"><a id="operators" class="passive" href="#">O</a></li>
+                <li onmouseup="custObjClicked();"><a id="customObjects" href="#">CO</a></li>
+                <li onmouseup="fieldsClicked();" ><a id="fields" href="#">FI</a></li>
+                <li onmouseup="formulasClicked();" ><a id="formulas" href="#">FO</a></li>
+                <li onmouseup="operatorsClicked();"><a id="operators" href="#">OP</a></li>
             </ul>
         </div>
     </div>
-    <input type="text" id="hiddenTextBox" onkeyup="escClicked(event);">
+    <input type="text" id="hiddenTextBox" onkeyup="getArrowKeys(event);" readonly>
 <script type="text/javascript" src="customobjects.js"></script>
 <script type="text/javascript" src="formulas.js"></script>
 <script type="text/javascript" src="script.js"></script>

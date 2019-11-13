@@ -1,4 +1,4 @@
-const formulas = [
+const formulass = [
     {
         'formula': 'MOD',    
         'argumentCount':2,
