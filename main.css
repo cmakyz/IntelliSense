@@ -2,13 +2,16 @@ textarea {
     font-family: monospace;
     font-size: 14px;
     white-space: nowrap;
+    resize: none;
+    width: 400px;
+    height: 500px;
 }
 #auto-comp {
     position: absolute;
     visibility: hidden;
 }
 input{
-    visibility: visible;
+    visibility: hidden;
 }
 #hiddenTextarea{
     width: auto;
@@ -21,11 +24,10 @@ input{
 li {
     font-family: monospace;
     font-size: 12px;
-    font-weight: bold;
     list-style-type: none;
-    margin-left: -38px;
+    margin-left: -40px;
 }
-ul {
+ul{
     margin: 0 auto;
 }
 #autocomplete ul li{
@@ -40,7 +42,7 @@ ul {
     z-index: 1;
     overflow: auto;
     overflow-x: hidden;
-    width: 230px;
+    width: 233px;
     height: 150px;
     border: 1px solid black;
 }
@@ -59,15 +61,16 @@ li:hover {
     color: black;
     float: left;
     display: block;
-    padding: 4px 10px;
+    padding: 4px 6px;
     margin-left: -1px;
     position: relative;
-    left: 1px;
-    background: white;
     text-decoration: none;
+    border: 1px solid #ccc;
+    font-size: 8px;
 }
-.tabs li a:hover { 
-    background: #ccc; 
+.activated , .tabs li a:hover { 
+    background-color: rgb(134, 134, 134);
+    color: #fff;
 }
 .group:after {
     visibility: hidden;
@@ -83,9 +86,6 @@ li:hover {
 }
 .tabbed-area{
     padding-top: 140px;
-}
-.tabs li a { 
-    border: 1px solid #ccc; 
 }
 .cur-nav-fix .tabs { 
     position: absolute;
