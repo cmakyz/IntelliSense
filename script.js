@@ -1,16 +1,18 @@
-let parsed_customObjects = customObject;
+let parsed_customObjects = customObjects;
 let parsed_formulas = formulass;
-const customObjectList = [];
+let customObjectList = [];
+ 
+
 for (let i=0;i<parsed_customObjects.length;i++) {
     customObjectList.push(parsed_customObjects[i].formulaName);
 }
-
 let list_autoComplete = document.getElementById("list");
 let textArea = document.getElementById("inputTextarea");
 textArea.focus();
 
 function getMouseClick() { //mouse click ile cursorun yeri değişirse
     getCursorPosition();
+    inputControl();
 }
 function getCursorPosition() {//Cursor index takibi yapan fonk
    let textarea = document.getElementById("inputTextarea");
@@ -23,6 +25,7 @@ function getArrowKeys(event) { // ok tuşları ve enter control
     let keyCode_arrow_right = 39;
     let keyCode_arrow_down = 40;
     let keyCode_enter = 13;
+    let keyCode_backSpace = 8;
     let activeElement = document.activeElement.tagName;
     let ul = document.getElementById("list");
     let ul_items = ul.getElementsByTagName("li");
@@ -32,15 +35,16 @@ function getArrowKeys(event) { // ok tuşları ve enter control
     let tmp_inputText = document.getElementById("inputTextarea").value;
     let hiddenTextArea = document.getElementById("hiddenTextarea");
 
-
     if (event.keyCode==keyCode_arrow_left 
         || event.keyCode==keyCode_arrow_up 
         || event.keyCode==keyCode_arrow_right 
         || event.keyCode==keyCode_arrow_down
-        && activeElement=="TEXTAREA" ) {
+        || event.keyCode==keyCode_enter
+        || event.keyCode==keyCode_backSpace
+        && activeElement=="TEXTAREA"){
         getCursorPosition();
+        inputControl();
     }
-
     if(event.keyCode==keyCode_arrow_up
        && activeElement=="INPUT"){
         for(let i=0;i<ul_items.length;i++){
@@ -82,6 +86,7 @@ function getArrowKeys(event) { // ok tuşları ve enter control
                 if(ul_items[i].className == "active"
                     && a_list[j].className=="activated"
                     && a_list[j].id=="customObjects"){
+                        console.log(ul_items[i]);
                         document.getElementById("inputTextarea").value = tmp_inputText.slice(0,cursor_index)+ul_items[i].innerHTML+"."+tmp_inputText.slice(cursor_index);
                         hiddenTextArea.innerText = tmp_inputText.slice(0,cursor_index)+ul_items[i].innerHTML+"."+tmp_inputText.slice(cursor_index);
                         textArea.focus();
@@ -107,20 +112,39 @@ function getArrowKeys(event) { // ok tuşları ve enter control
                     textArea.focus();
                     textArea.setSelectionRange(cursor_index+ul_items[i].textContent.length,cursor_index+ul_items[i].textContent.length);
                 }
-                else{
-                    //fields
+                else if(ul_items[i].className == "active"
+                && a_list[j].className=="activated"
+                && a_list[j].id=="fields"){
+                    document.getElementById("inputTextarea").value = tmp_inputText.slice(0,cursor_index)+ul_items[i].innerHTML+" "+tmp_inputText.slice(cursor_index);
+                    hiddenTextArea.innerText = tmp_inputText.slice(0,cursor_index)+ul_items[i].innerHTML+" "+tmp_inputText.slice(cursor_index);
+                    textArea.focus();
+                    textArea.setSelectionRange(cursor_index+ul_items[i].innerHTML.length+1,cursor_index+ul_items[i].innerHTML.length+1);
                 }
                 document.getElementById("auto-comp").style.visibility = "hidden";
             }
         } 
     }
 }
+
 function inputControl(){ //yazılacak
     let hiddenTextArea = document.getElementById("hiddenTextarea");
-    let inputTextArea = document.getElementById("inputTextarea").value;
-    let textArea = document.getElementById("inputTextarea");
+    let hiddenTextAreaInput = document.getElementById("hiddenTextarea").value;
+    let inputTextArea = document.getElementById("inputTextarea");
+    let visibleTextAreaInput = document.getElementById("inputTextarea").value;
     let cursor_index = getCursorPosition();
-    hiddenTextArea.innerText = inputTextArea;
+    let reverseCustomObjectName = "";
+    
+    hiddenTextArea.innerText = visibleTextAreaInput;
+
+    for(let i=cursor_index;i>-1;i--){
+        if(inputTextArea.value[i]=='\n'){
+            break;
+        }
+        else{
+            reverseCustomObjectName += inputTextArea.value[i];
+        }
+    }
+    reverseCustomObjectName = reverse(reverseCustomObjectName);
 }
 
 function ctrlSpace(event) {
@@ -145,32 +169,43 @@ function custObjClicked(){
             a_list[i].classList.remove("activated");
         }
     }
-    
     for (let i = 0; i < parsed_customObjects.length; i++) {
        let ul_item = document.createElement("li");
        if(i==0){
         ul_item.classList.add("active");
         }
-       ul_item.appendChild(document.createTextNode(parsed_customObjects[i].formulaName));
-       ul.appendChild(ul_item);
+        if(parsed_customObjects[i].isSystem===true){
+            ul_item.classList.add("system-true");
+        }
+        ul_item.appendChild(document.createTextNode(parsed_customObjects[i].formulaName));
+        ul.appendChild(ul_item);
     }
     document.getElementById("auto-comp").style.visibility = "visible";
     hiddenTextBox.focus();
 }
-function fieldsClicked(){ //yazılacak
+function fieldsClicked(){
     let hiddenTextBox = document.getElementById("hiddenTextBox");
     let inputTextarea = document.getElementById("inputTextarea");
-    let txtAreaInput = document.getElementById("inputTextarea").value;
+    let textAreaInput = document.getElementById("inputTextarea").value;
     let cursor_index = getCursorPosition();
     let hiddenTextArea = document.getElementById("hiddenTextarea");
     let ul = document.getElementById("list");
     ul.innerHTML = "";
     let fieldsList = [];
-
-    console.log(customObjectList);
     let reverseCustObjName = "";
     let inpTextArea = textArea.value;
     let inputLength = inpTextArea.length;
+    let a_list = document.getElementsByTagName("a");
+
+    for (let i = 0; i < a_list.length; i++) {
+        if(a_list[i].id=="fields"){
+            a_list[i].classList.add("activated");
+        }
+        else{
+            a_list[i].classList.remove("activated");
+        }
+    }
+
     if(inpTextArea[inputLength-1]=="."){
         for(let i=inputLength-2;i>-1;i--){
             if(inpTextArea[i]==' '
@@ -184,7 +219,7 @@ function fieldsClicked(){ //yazılacak
         }
     }
     reverseCustObjName = reverse(reverseCustObjName);
-    if(txtAreaInput[cursor_index-1]=="."
+    if(textAreaInput[cursor_index-1]=="."
         &&customObjectList.indexOf(reverseCustObjName)>-1){
             for(let i=0;i<customObjectList.length;i++){
                 if(customObjectList[i]==reverseCustObjName){
@@ -202,7 +237,7 @@ function fieldsClicked(){ //yazılacak
         }
         ul.appendChild(ul_item);
     }
-    console.log(fieldsList);
+
     document.getElementById("auto-comp").style.visibility = "visible";
     hiddenTextBox.focus();
 }
@@ -210,7 +245,6 @@ function formulasClicked(){
     let hiddenTextBox = document.getElementById("hiddenTextBox");
     let ul = document.getElementById("list");
     ul.innerHTML = "";
-
     let a_list = document.getElementsByTagName("a");
     for (let i = 0; i < a_list.length; i++) {
         if(a_list[i].id=="formulas"){
@@ -237,7 +271,6 @@ function operatorsClicked(){
     let ul = document.getElementById("list");
     let array_operators = ["AND","OR","NOT","IN","<",">","<=",">=","+","-","*","/"];
     ul.innerHTML = "";
-
     let a_list = document.getElementsByTagName("a");
     for (let i = 0; i < a_list.length; i++) {
         if(a_list[i].id=="operators"){
@@ -311,26 +344,13 @@ list_autoComplete.onclick = function(event){
                     inputTextArea.focus();
                     textArea.setSelectionRange(cursor_index+ul_items[i].textContent.length,cursor_index+ul_items[i].textContent.length);
         }
-        else if(a_list[i].id=="fields"
-                /*&& a_list[i].className == "activated"*/){
-                let reverseCustObjName = "";
-                let inpTextArea = textArea.value;
-                let inputLength = inpTextArea.length;
-                if(inpTextArea[inputLength-1]=="."){
-                    for(let k=inputLength-2;k>-1;k--){
-                        if(inpTextArea[k]==' '
-                            || inpTextArea[k]=='\n'
-                            || inpTextArea=="."){
-                            break;
-                        }
-                        else{
-                            reverseCustObjName += inpTextArea[k];
-                        }
-                    }
-                }
-                reverseCustObjName = reverse(reverseCustObjName);
-                inputTextArea.focus();
+        else if(a_list[i].className == "activated"
+                && a_list[i].id == "fields"){
+            let inpTextArea = textArea.value;
+            document.getElementById("inputTextarea").value = tmp_inputText.slice(0,cursor_index)+target.innerText+" "+tmp_inputText.slice(cursor_index);
+            inputTextArea.focus();
         }
     }
     document.getElementById("auto-comp").style.visibility = "hidden";
+
 }

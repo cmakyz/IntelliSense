@@ -1,5 +1,31 @@
 const customObject = [ 
    { 
+      "customObjectUid":"327288ec-f926-494f-89b3-c75535a91111",
+      "customObjectName":"Cities of Turkey",
+      "formulaName":"CITY",
+      "isSystem":true,
+      "fields":[ 
+         { 
+            "fieldTypeUid":"ee2c6c80-57fc-410e-ad16-47e21dc859cc",
+            "fieldTypeName":"Text",
+            "fieldUid":"f69611da-6174-4e1b-be52-cf48ac590811",
+            "fieldName":"Name",
+            "formulaName":"NAME",
+            "defaultValueFormula":"",
+            "infoText":""
+         },
+         { 
+            "fieldTypeUid":"ee2c6c80-57fc-410e-ad16-47e21dc859cc",
+            "fieldTypeName":"Text",
+            "fieldUid":"f69611da-6174-4e1b-be52-cf48ac590822",
+            "fieldName":"Postal Code",
+            "formulaName":"POSTAL_CODE",
+            "defaultValueFormula":"",
+            "infoText":""
+         }
+      ]
+   },
+   { 
       "customObjectUid":"327288ec-f926-494f-89b3-c75535a9ba97",
       "customObjectName":"Order Chat Message",
       "formulaName":"ORDER_CHAT_MESSAGE",
@@ -118,6 +144,8 @@ const customObject = [
             "fieldUid":"1eaa591e-5f21-45e7-aaba-73aca0f49d02",
             "fieldName":"City",
             "formulaName":"CITY",
+            "lookupObjectUid":"327288ec-f926-494f-89b3-c75535a91111",
+            "lookupObjectFormulaName":"CITY",
             "defaultValueFormula":"",
             "infoText":""
          },
@@ -1250,3 +1278,15 @@ const customObject = [
       ]
    }
 ]
+let isSystemTrueList = [];
+let isSystemFalseList = [];
+for(let i=0;i<customObject.length;i++){
+   if(customObject[i].isSystem===true){
+      isSystemTrueList.push(customObject[i]);
+   }
+   else{
+      isSystemFalseList.push(customObject[i]);
+   }
+}
+const customObjects = isSystemFalseList.concat(isSystemTrueList);
+console.log(customObjects);

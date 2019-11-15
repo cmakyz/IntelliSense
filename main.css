@@ -11,7 +11,10 @@ textarea {
     visibility: hidden;
 }
 input{
-    visibility: hidden;
+    opacity:0;
+}
+input:hover{
+    cursor:default;
 }
 #hiddenTextarea{
     width: auto;
@@ -71,6 +74,9 @@ li:hover {
 .activated , .tabs li a:hover { 
     background-color: rgb(134, 134, 134);
     color: #fff;
+}
+.system-true::before{
+    content: "-";
 }
 .group:after {
     visibility: hidden;
