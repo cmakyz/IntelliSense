@@ -1289,4 +1289,3 @@ for(let i=0;i<customObject.length;i++){
    }
 }
 const customObjects = isSystemFalseList.concat(isSystemTrueList);
-console.log(customObjects);
