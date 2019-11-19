@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
     <link rel="stylesheet" href="main.css">
     <title>Formula-Editor</title>
 </head>
+
 <body onkeyup="escClicked(event);">
-    <textarea id="inputTextarea" cols="50" rows="15" onkeyup="ctrlSpace(event); getArrowKeys(event);" onmouseup="getMouseClick();" oninput="getCursorPosition(); inputControl();"></textarea>    
+    <textarea id="inputTextarea" cols="50" rows="15" onkeyup="ctrlSpace(event); getArrowEnterBackspaceKeys(event); inputControl();"
+        onmouseup="getMouseClick(); inputControl();" oninput="getCursorPosition();"></textarea>
     <div id="hiddenTextarea"></div>
 
     <div id="auto-comp">
@@ -19,15 +22,16 @@
         <div class="tabbed-area">
             <ul class="tabs group">
                 <li onmouseup="custObjClicked();"><a id="customObjects" href="#">custom objects</a></li>
-                <li onmouseup="fieldsClicked();" ><a id="fields" href="#">fields</a></li>
-                <li onmouseup="formulasClicked();" ><a id="formulas" href="#">functions</a></li>
+                <li onmouseup="fieldsClicked();"><a id="fields" href="#">fields</a></li>
+                <li onmouseup="formulasClicked();"><a id="formulas" href="#">functions</a></li>
                 <li onmouseup="operatorsClicked();"><a id="operators" href="#">operators</a></li>
             </ul>
         </div>
     </div>
-    <input type="text" id="hiddenTextBox" onkeyup="getArrowKeys(event);" readonly>
-<script type="text/javascript" src="customobjects.js"></script>
-<script type="text/javascript" src="formulas.js"></script>
-<script type="text/javascript" src="script.js"></script>
+    <input type="text" id="hiddenTextBox" onkeyup="getArrowEnterBackspaceKeys(event);" readonly>
+    <script type="text/javascript" src="customobjects.js"></script>
+    <script type="text/javascript" src="formulas.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
+
 </html>
