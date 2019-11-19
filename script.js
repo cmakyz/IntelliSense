@@ -12,13 +12,13 @@ let list_autoComplete = document.getElementById("list");
 let textArea = document.getElementById("inputTextarea");
 textArea.focus();
 
-function getMouseClick() { //mouse click ile cursorun yeri değişirse
+function getMouseClick() {//mouse click ile cursorun yeri değişirse
 
     getCursorPosition();
 
 }
 
-function getCursorPosition() { //Cursor index takibi yapan fonk
+function getCursorPosition() {//Cursor index takibi yapan fonk
 
     let textarea = document.getElementById("inputTextarea");
     let cursor_index = textarea.selectionStart;
@@ -26,7 +26,7 @@ function getCursorPosition() { //Cursor index takibi yapan fonk
 
 }
 
-function getArrowEnterBackspaceKeys(event) { // ok tuşları ve enter control 
+function getArrowEnterBackspaceKeys(event) {
 
     let keyCode_arrow_left = 37;
     let keyCode_arrow_up = 38;
@@ -108,7 +108,7 @@ function getArrowEnterBackspaceKeys(event) { // ok tuşları ve enter control
 
         for (let i = 0; i < ul_items.length; i++) {
 
-            for (let j = 0; j < a_list.length; j++) { //customObjects tab'i
+            for (let j = 0; j < a_list.length; j++) {
 
                 if (ul_items[i].classList.contains("active")
                     &&a_list[j].classList.contains("activated")
@@ -123,7 +123,7 @@ function getArrowEnterBackspaceKeys(event) { // ok tuşları ve enter control
 
                 else if (ul_items[i].classList.contains("active")
                         &&a_list[j].classList.contains("activated")
-                        &&a_list[j].id == "formulas") { //formulas tab'i
+                        &&a_list[j].id == "formulas") {
                             
                     for (let k = 0; k < parsed_formulas.length; k++) {
 
@@ -140,7 +140,7 @@ function getArrowEnterBackspaceKeys(event) { // ok tuşları ve enter control
 
                 else if (ul_items[i].classList.contains("active")
                         &&a_list[j].classList.contains("activated")
-                        &&a_list[j].id == "operators") { //operators tab'i
+                        &&a_list[j].id == "operators") {
 
                             if (ul_items[i].textContent === "AND"
                                 ||ul_items[i].textContent === "OR"
@@ -167,7 +167,7 @@ function getArrowEnterBackspaceKeys(event) { // ok tuşları ve enter control
                 
                 else if (ul_items[i].classList.contains("active")
                         &&a_list[j].classList.contains("activated")
-                        &&a_list[j].id == "fields") { //fields tab'i
+                        &&a_list[j].id == "fields") {
 
                             document.getElementById("inputTextarea").value = tmp_inputText.slice(0, cursor_index) + ul_items[i].innerHTML + " " + tmp_inputText.slice(cursor_index);
                             hiddenTextArea.innerText = tmp_inputText.slice(0, cursor_index) + ul_items[i].innerHTML + " " + tmp_inputText.slice(cursor_index);
@@ -183,7 +183,7 @@ function getArrowEnterBackspaceKeys(event) { // ok tuşları ve enter control
     }
 }
 
-function inputControl() { //!
+function inputControl() {
     let hiddenTextArea = document.getElementById("hiddenTextarea");
 
     let visibleTextAreaInput = document.getElementById("inputTextarea").value;
@@ -218,12 +218,10 @@ function inputControl() { //!
     document.getElementById("auto-comp").style.left=distanceX+"px";
     document.getElementById("auto-comp").style.top=distanceY+"px";
     if(visibleTextAreaInput.indexOf('\n')>-1){
-        console.log("alt satıra gecildi");
     }
-    console.log(distanceX);
 }
 
-function ctrlSpace(event) { //tamamlandı
+function ctrlSpace(event) {
     let keyCode_space = 32;
     let hiddenTextBox = document.getElementById("hiddenTextBox");
 
@@ -235,7 +233,7 @@ function ctrlSpace(event) { //tamamlandı
 
 }
 
-function custObjClicked() { //tamamlandı
+function custObjClicked() {
     let hiddenTextBox = document.getElementById("hiddenTextBox");
     let ul = document.getElementById("list");
     ul.innerHTML = "";
@@ -269,7 +267,7 @@ function custObjClicked() { //tamamlandı
     hiddenTextBox.focus();
 }
 
-function fieldsClicked() { //tammalandı
+function fieldsClicked() {
     let hiddenTextBox = document.getElementById("hiddenTextBox");
     let textAreaInput = document.getElementById("inputTextarea").value;
     let cursor_index = getCursorPosition();
@@ -339,7 +337,7 @@ function fieldsClicked() { //tammalandı
 
 }
 
-function formulasClicked() { //tamamlandı
+function formulasClicked() {
     let hiddenTextBox = document.getElementById("hiddenTextBox");
     let ul = document.getElementById("list");
     ul.innerHTML = "";
@@ -372,7 +370,7 @@ function formulasClicked() { //tamamlandı
     hiddenTextBox.focus();
 }
 
-function operatorsClicked() { //tamamlandı
+function operatorsClicked() {
     let hiddenTextBox = document.getElementById("hiddenTextBox");
     let ul = document.getElementById("list");
     let array_operators = ["AND", "OR", "NOT", "IN", "<", ">", "<=", ">=", "+", "-", "*", "/"];
@@ -403,7 +401,7 @@ function operatorsClicked() { //tamamlandı
     hiddenTextBox.focus();
 }
 
-function escClicked(event) { // tamamlandı
+function escClicked(event) {
     let keyCode_esc = 27;
     let textArea = document.getElementById("inputTextarea");
     let hiddenTextBox = document.getElementById("hiddenTextBox");
@@ -415,7 +413,7 @@ function escClicked(event) { // tamamlandı
     }
 }
 
-function reverse(str) { //ters texti düze çeviriyor
+function reverse(str) {
     return str.split("").reverse().join("");
 }
 
