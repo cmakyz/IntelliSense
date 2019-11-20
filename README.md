@@ -19,7 +19,7 @@ When you press **_ctrl+space_** you will see the **fields** of your choice in th
 
 You will see the functions that come by default , in the **functions** and **operators** tab.
 
-## Solved and Unsolved Errors
+## Solved and Unsolved Problems
 1. **Autocomplete** positioning on the y axis.✓<br>
 2. You have to press enter at the end of each line.Line break cannot be detected automatically.╳<br>
 3. Cursor position and line number detection in arrow keys, backspace, enter and mouse click events when focus on textarea.✓<br>

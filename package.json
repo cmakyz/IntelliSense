@@ -1,0 +1,32 @@
+{
+  "name": "intellisense",
+  "version": "1.0.0",
+  "description": "gulp-test",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.snappyselling.com/frontend/intellisense.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-dest": "^0.2.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^4.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-series": "^1.0.2",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1"
+  }
+}
