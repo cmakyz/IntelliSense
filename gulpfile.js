@@ -1,30 +1,23 @@
 const { src, dest, parallel, series, watch } = require('gulp');
 
 const minifyCSS = require('gulp-minify-css');
-const uglify = require('gulp-uglify');
-const gulpif = require("gulp-if");
-//const babel = require('gulp-babel');
+const terser = require('gulp-terser');
 const concat = require("gulp-concat");
 
-/*const babelConfig = {
-    presets: ['@babel/env'],
-    plugins: ["@babel/plugin-proposal-class-properties"],
-};*/
-let DEV = false;
-
-function mainCSS(){
-    return src('css/main.css',{sourcemaps: DEV})
-        .pipe(minifyCSS())
-        .pipe(dest('css/css.min',{sourcemaps: DEV}));
-}
 
 function uglifyJS(){
-    return src('js/*.js',{sourcemaps: DEV})
-        //.pipe(babel(babelConfig))
-        .pipe(gulpif(!DEV,uglify()))
+    return src('js/*.js')
         .pipe(concat('intellisense.min.js'))
-        .pipe(dest('js/js.min',{sourcemaps: DEV}))
+        .pipe(terser())
+        .pipe(dest('js/intellisense-min'))
 }
+
+function mainCSS(){
+    return src('css/main.css')
+        .pipe(minifyCSS())
+        .pipe(dest('css/intellisense-min'));
+}
+
 const JS = series(
     uglifyJS
 );
