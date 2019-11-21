@@ -12,12 +12,6 @@ let list_autoComplete = document.getElementById("list");
 let textArea = document.getElementById("inputTextarea");
 textArea.focus();
 
-function getMouseClick() {//mouse click ile cursorun yeri değişirse
-
-    getCursorPosition();
-
-}
-
 function getCursorPosition() {//Cursor index takibi yapan fonk
 
     let textarea = document.getElementById("inputTextarea");
@@ -185,9 +179,7 @@ function getArrowEnterBackspaceKeys(event) {
 
 function inputControl() {
     let hiddenTextArea = document.getElementById("hiddenTextarea");
-
     let visibleTextAreaInput = document.getElementById("inputTextarea").value;
-
     let cursor_index = getCursorPosition();
     let reverseCustomObjectName = "";
 
@@ -196,7 +188,7 @@ function inputControl() {
         if(visibleTextAreaInput[i] == '\n') {
             break;
         }
-        else {
+        else{
             reverseCustomObjectName += visibleTextAreaInput[i];
         }
     }
@@ -217,8 +209,6 @@ function inputControl() {
 
     document.getElementById("auto-comp").style.left=distanceX+"px";
     document.getElementById("auto-comp").style.top=distanceY+"px";
-    if(visibleTextAreaInput.indexOf('\n')>-1){
-    }
 }
 
 function ctrlSpace(event) {
@@ -243,18 +233,18 @@ function custObjClicked() {
 
     for (let i = 0; i < a_list.length; i++) {
 
-        if (a_list[i].id == "customObjects") {
+        if(a_list[i].id == "customObjects"){
             a_list[i].classList.add("activated");
-        } else {
+        }
+        else{
             a_list[i].classList.remove("activated");
         }
-
     }
 
     for (let i = 0; i < parsed_customObjects.length; i++) {
         let ul_item = document.createElement("li");
 
-        if (i == 0) {
+        if(i == 0) {
             ul_item.classList.add("active");
         }
         if (parsed_customObjects[i].isSystem === true) {
@@ -283,9 +273,10 @@ function fieldsClicked() {
 
     for (let i = 0; i < a_list.length; i++) {
 
-        if (a_list[i].id == "fields") {
+        if(a_list[i].id == "fields"){
             a_list[i].classList.add("activated");
-        } else {
+        }
+        else{
             a_list[i].classList.remove("activated");
         }
 
@@ -295,11 +286,12 @@ function fieldsClicked() {
 
         for (let i = inputLength - 2; i > -1; i--) {
 
-            if (inpTextArea[i] == ' ' ||
+            if(inpTextArea[i] == ' ' ||
                 inpTextArea[i] == '\n' ||
                 inpTextArea[i] == ".") {
                 break;
-            } else {
+            }
+            else{
                 reverseCustObjName += inpTextArea[i];
             }
 
@@ -336,7 +328,6 @@ function fieldsClicked() {
 
     document.getElementById("auto-comp").style.visibility = "visible";
     hiddenTextBox.focus();
-
 }
 
 function formulasClicked() {
@@ -347,9 +338,10 @@ function formulasClicked() {
 
     for (let i = 0; i < a_list.length; i++) {
 
-        if (a_list[i].id == "formulas") {
+        if (a_list[i].id == "formulas"){
             a_list[i].classList.add("activated");
-        } else {
+        }
+        else{
             a_list[i].classList.remove("activated");
         }
 
@@ -383,7 +375,8 @@ function operatorsClicked() {
 
         if (a_list[i].id == "operators") {
             a_list[i].classList.add("activated");
-        } else {
+        }
+        else{
             a_list[i].classList.remove("activated");
         }
 
@@ -391,6 +384,7 @@ function operatorsClicked() {
 
     for (let i = 0; i < array_operators.length; i++) {
         let ul_item = document.createElement("li");
+
         if (i == 0) {
             ul_item.classList.add("active");
         }
@@ -433,7 +427,6 @@ list_autoComplete.onclick = function(event) {
     let hiddenTextArea = document.getElementById("hiddenTextarea");
     let ul = document.getElementById("list");
     let ul_items = ul.getElementsByTagName("li");
-
     for (let i = 0; i < a_list.length; i++) {
         if (a_list[i].classList.contains("activated")
             &&a_list[i].id == "customObjects") {
@@ -462,6 +455,7 @@ list_autoComplete.onclick = function(event) {
         }
         else if(a_list[i].classList.contains("activated")
                 &&a_list[i].id == "operators") {
+                
                 if(target.innerText=="AND"
                     ||target.innerText=="NOT"
                     ||target.innerText=="IN"
@@ -473,7 +467,6 @@ list_autoComplete.onclick = function(event) {
                     textArea.setSelectionRange(cursor_index + ul_items[i].textContent.length+3, cursor_index + ul_items[i].textContent.length+3);
 
                 }
-
                 else{
 
                     document.getElementById("inputTextarea").value = tmp_inputText.slice(0, cursor_index) + target.innerText + tmp_inputText.slice(cursor_index);
@@ -484,14 +477,55 @@ list_autoComplete.onclick = function(event) {
 
         }
         else if (a_list[i].classList.contains("activated")
-                &&a_list[i].id == "fields") {
-                document.getElementById("inputTextarea").value = tmp_inputText.slice(0, cursor_index) + target.innerText + " " + tmp_inputText.slice(cursor_index);
-                inputTextArea.focus();
+                &&a_list[i].id == "fields"){
+                let reverseCustObjName = "";
+                let inpTextArea = textArea.value;
+                let inputLength = inpTextArea.length;
+
+                if (inpTextArea[inputLength - 1] == ".") {
+            
+                    for (let i = inputLength - 2; i > -1; i--) {
+            
+                        if(inpTextArea[i] == ' '
+                            ||inpTextArea[i] == '\n'
+                            ||inpTextArea[i] == "."){
+
+                            break;
+                        }
+                        else{
+                            reverseCustObjName += inpTextArea[i];
+                        }
+
+                    }
+                }
+                reverseCustObjName = reverse(reverseCustObjName);
+
+                for (let i = 0; i < parsed_customObjects.length; i++) {
+
+                    if(parsed_customObjects[i].formulaName==reverseCustObjName){
+
+                        for (let j = 0; j < parsed_customObjects[i].fields.length; j++) {
+
+                            if(parsed_customObjects[i].fields[j].formulaName==target.innerText){
+
+                                if(parsed_customObjects[i].fields[j].fieldTypeName==("LookupList")
+                                    ||parsed_customObjects[i].fields[j].fieldTypeName=="SharedList"){
+
+                                    document.getElementById("inputTextarea").value = tmp_inputText.slice(0, cursor_index) + target.innerText + "." + tmp_inputText.slice(cursor_index);
+                                    inputTextArea.focus();
+
+                                }
+                                else{
+
+                                    document.getElementById("inputTextarea").value = tmp_inputText.slice(0, cursor_index) + target.innerText + " " + tmp_inputText.slice(cursor_index);
+                                    inputTextArea.focus();
+
+                                }
+                            }
+                        }
+                    }
+                }
         }
-
-
     }
-
     document.getElementById("auto-comp").style.visibility = "hidden";
-
 }

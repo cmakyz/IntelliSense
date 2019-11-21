@@ -1,24 +1,24 @@
 textarea {
     font-size: 13px;
-    width: 400px;
-    height: 600px
+    width: 396px;
+    height: 596px;
 }
 
 #auto-comp {
     position: absolute;
-    visibility: hidden
+    visibility: hidden;
 }
 
 input {
-    opacity: 0
+    opacity: 0;
 }
 
 input:hover {
-    cursor: default
+    cursor: default;
 }
 
 #hiddenTextarea, li, textarea {
-    font-family: "Lucida Console", Monaco, monospace
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
 #hiddenTextarea {
@@ -26,24 +26,25 @@ input:hover {
     position: fixed;
     visibility: hidden;
     font-size: 13px;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
-.tabs, li {
-    margin-left: -40px
+.tabs {
+    margin-left: -40px;
 }
 
 li {
     font-size: 12px;
-    list-style-type: none
+    list-style-type: none;
+    margin-left: -40px;
 }
 
 ul {
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 #autocomplete ul li {
-    color: #000
+    color: #000;
 }
 
 #auto-comp div ul li:hover, .active {
@@ -59,20 +60,19 @@ ul {
     width: 233px;
     height: 150px;
     border: 1px solid #000;
-    background-color: bisques
 }
 
 li:hover {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .tabs {
     list-style: none;
-    margin-top: 12px
+    margin-top: 12px;
 }
 
 .tabs li {
-    display: inline
+    display: inline;
 }
 
 .tabs li a {
@@ -84,16 +84,16 @@ li:hover {
     position: relative;
     text-decoration: none;
     border: 1px solid #ccc;
-    font-size: 8px
+    font-size: 8px;
 }
 
 .activated, .tabs li a:hover {
     background-color: #868686;
-    color: #fff
+    color: #fff;
 }
 
 .system-true::before {
-    content: "-"
+    content: "-";
 }
 
 .group:after {
@@ -107,11 +107,12 @@ li:hover {
 
 .box-wrap {
     position: relative;
-    min-height: 250px
+    min-height: 250px;
 }
 
 .tabbed-area {
-    padding-top: 140px
+    padding-top: 140px;
+    background-color: #f5f5f5;
 }
 
 .cur-nav-fix .tabs {
@@ -130,23 +131,23 @@ li:hover {
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
-    background-color: #f5f5f5
+    background-color: #f5f5f5;
 }
 
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #f5f5f5
+    background-color: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: #555;
-    outline: #999 solid 1px
+    outline: #999 solid 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #333
+    background-color: #333;
 }
 
 ::-webkit-scrollbar-corner {
-    background-color: transparent
+    background-color: transparent;
 }

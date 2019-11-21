@@ -11,7 +11,7 @@
 
 <body onkeyup="escClicked(event);">
     <textarea id="inputTextarea" cols="50" rows="15" onkeyup="ctrlSpace(event); getArrowEnterBackspaceKeys(event); inputControl();"
-        onmouseup="getMouseClick(); inputControl();" oninput="getCursorPosition();"></textarea>
+        onmouseup="getCursorPosition(); inputControl();" oninput="getCursorPosition();" onfocus="inputControl();"></textarea>
     <div id="hiddenTextarea"></div>
 
     <div id="auto-comp">

@@ -3,7 +3,18 @@
 This is a code editor with its own rules.The purpose is to code **custom objects-fields of custom objects-functions-operators** hierarchy.
 
 ## Installing
-Clone project and run index.html.
+### * on Linux
+You have to install **npm** and **gulp**.Open terminal with ```Ctrl + Alt + T``` combination and run the following commands in sequence.<br>
+```
+sudo npm i
+sudo npm i gulp-cli -g
+sudo npm i gulp -g
+```
+Clone project and open folder.Right click on the opened page.Choose **Open in Terminal** and run following command.
+```
+gulp dev
+```
+You may close the terminal after that.Finally , open **index.html**.
 
 ## How to Work
 After running index.html , you will see the textarea.If you press **_ctrl+space_** you will see **custom objects** from the *customobjects.js* file.You can choose with arrow keys(then press Enter) or left mouse click.Your choice will be added to the textarea.<br>
